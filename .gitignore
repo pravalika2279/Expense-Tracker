@@ -12,8 +12,8 @@ ENV/
 
 # Django
 *.log
-staticfiles/
-media/
+/staticfiles/ 
+/media/
 
 # IDE/editor
 .vscode/
@@ -21,3 +21,5 @@ media/
 
 # Secrets
 .env
+
+

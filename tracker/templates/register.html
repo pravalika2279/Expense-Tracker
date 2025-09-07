@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense-Tracker-Login</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100vh;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: blueviolet;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: lightblue;
+            padding: 8px;
+            border-radius: 5%;
+            border: 1px;
+            font-size: large;
+            box-shadow: 0px 0px 4px 4px rgb(166, 182, 236);
+            margin: 3px;
+            margin-bottom: 8px;
+        }
+
+        .fir {
+            background-color: lightblue;
+            font-size: x-large;
+            text-align: center;
+        }
+
+        .sec {
+            background-color: deepskyblue;
+            border: none;
+            border-radius: 5px;
+            font-size: large;
+            padding: 20px;
+            margin: 3px;
+            margin-bottom: 8px;
+        }
+
+        input[type=text], input[type=password], input[type=email] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+            border-radius: 5px;
+            margin: 3px;
+        }
+
+        input[type=submit] {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+            border-radius: 5px;
+            font-size: large;
+        }
+
+        #submit {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .password-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .password-wrapper input {
+            width: 100%;
+            padding-right: 40px; /* make space for eye icon */
+        }
+
+        .password-wrapper i {
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+            color: #333;
+        }
+        a{
+            text-decoration: none;
+            color:black;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="fir">
+            <p>REGISTER</p>
+        </div>
+        <div class="sec">
+            <form method="post">
+                {% csrf_token %}
+                <label>First Name</label>
+                <input type="text" name="first_name" required><br>
+                <label>Last Name</label>
+                <input type="text" name="last_name" required><br>
+                <label>Email</label>
+                <input type="email" name="email" required><br>
+                <label>User Name</label>
+                <input type="text" name="username" required><br>
+                <label>Password</label>
+                <div class="password-wrapper">
+                    <input type="password" name="password" id="password" placeholder="Enter Password.." required>
+                    <i class="fa-regular fa-eye" id="togglePassword"></i>
+                </div><br>
+
+                <span id="submit">
+                    <input type="submit" value="Submit">
+                </span>
+            </form>
+        </div>
+        <a href="{% url 'login' %}"><p id="goto">Already have an account &rarr;</p></a>
+    </div>
+
+        {% if messages %}
+        <script>
+        {% for message in messages %}
+        alert('{{message}}')
+        {% endfor %}
+        </script>
+        {% endif %}
+
+    <script>
+        const toggle = document.getElementById("togglePassword");
+        const password = document.getElementById("password");
+
+        toggle.addEventListener("click", function () {
+            const type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
+            this.classList.toggle("fa-eye");
+            this.classList.toggle("fa-eye-slash");
+        });
+    </script>
+</body>
+</html>
