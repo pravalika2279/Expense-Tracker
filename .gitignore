@@ -1,25 +1,9 @@
-# Python
-*.pyc
-__pycache__/
-*.pyo
-*.pyd
-*.sqlite3
+# Don’t commit collected files (Render will collect them)
+staticfiles/
 
-# Virtual environment
-env/
-venv/
-ENV/
-
-# Django
-*.log
-/staticfiles/ 
-/media/
-
-# IDE/editor
-.vscode/
-.idea/
-
-# Secrets
+# But DO keep source files
+static/
+media/
 .env
-
-
+__pycache__/
+*.pyc
